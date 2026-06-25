@@ -1,0 +1,180 @@
+{
+    "target": "bmv2",
+    "p4info": "build/sdn_switch.p4.p4info.txt",
+    "bmv2_json": "build/sdn_switch.json",
+    "table_entries": [
+        {
+            "table": "MyIngress.ipv4_lpm",
+            "match": {
+                "hdr.ipv4.dstAddr": [
+                    "10.0.1.1",
+                    32
+                ]
+            },
+            "action_name": "MyIngress.ipv4_forward",
+            "action_params": {
+                "port": 1
+            }
+        },
+        {
+            "table": "MyIngress.ipv4_lpm",
+            "match": {
+                "hdr.ipv4.dstAddr": [
+                    "10.0.1.11",
+                    32
+                ]
+            },
+            "action_name": "MyIngress.ipv4_forward",
+            "action_params": {
+                "port": 2
+            }
+        },
+        {
+            "table": "MyIngress.ipv4_lpm",
+            "match": {
+                "hdr.ipv4.dstAddr": [
+                    "10.0.1.12",
+                    32
+                ]
+            },
+            "action_name": "MyIngress.ipv4_forward",
+            "action_params": {
+                "port": 3
+            }
+        },
+        {
+            "table": "MyIngress.ipv4_lpm",
+            "match": {
+                "hdr.ipv4.dstAddr": [
+                    "10.0.1.21",
+                    32
+                ]
+            },
+            "action_name": "MyIngress.ipv4_forward",
+            "action_params": {
+                "port": 4
+            }
+        },
+        {
+            "table": "MyIngress.ipv4_lpm",
+            "match": {
+                "hdr.ipv4.dstAddr": [
+                    "10.0.1.22",
+                    32
+                ]
+            },
+            "action_name": "MyIngress.ipv4_forward",
+            "action_params": {
+                "port": 5
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.dstPort": [
+                    5001,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 1
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.dstPort": [
+                    5002,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 2
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.dstPort": [
+                    5003,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 3
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.dstPort": [
+                    5004,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 4
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.dstPort": [
+                    5005,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 5
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify_udp",
+            "match": {
+                "hdr.udp.dstPort": [
+                    5003,
+                    65535
+                ]
+            },
+            "priority": 1,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 3
+            }
+        },
+        {
+            "table": "MyEgress.int_config",
+            "match": {
+                "hdr.udp.dstPort": 5003
+            },
+            "action_name": "MyEgress.int_enable",
+            "action_params": {
+                "switch_id": 1
+            }
+        },
+        {
+            "table": "MyIngress.channel_classify",
+            "match": {
+                "hdr.tcp.srcPort": [
+                    5001,
+                    65535
+                ]
+            },
+            "priority": 2,
+            "action_name": "MyIngress.set_channel",
+            "action_params": {
+                "ch": 1
+            }
+        }
+    ]
+}
